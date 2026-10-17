@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gestor de tareas</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <main class="contenedor">
+    <h1>Gestor de tareas</h1>
+
+    <section class="resumen" aria-label="Resumen">
+      <div class="dato"><span id="r-total">0</span><small>Total</small></div>
+      <div class="dato"><span id="r-pendientes">0</span><small>Pendientes</small></div>
+      <div class="dato"><span id="r-completadas">0</span><small>Completadas</small></div>
+      <div class="dato vencidas"><span id="r-vencidas">0</span><small>Vencidas</small></div>
+    </section>
+
+    <form id="form-nueva" class="tarjeta">
+      <div class="campo grande">
+        <label for="n-titulo">Título</label>
+        <input id="n-titulo" name="titulo" maxlength="120" required autocomplete="off">
+      </div>
+      <div class="campo grande">
+        <label for="n-descripcion">Descripción</label>
+        <input id="n-descripcion" name="descripcion" maxlength="1000" autocomplete="off">
+      </div>
+      <div class="campo">
+        <label for="n-prioridad">Prioridad</label>
+        <select id="n-prioridad" name="prioridad">
+          <option value="baja">Baja</option>
+          <option value="media" selected>Media</option>
+          <option value="alta">Alta</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="n-fecha">Fecha límite</label>
+        <input id="n-fecha" name="fecha_limite" type="date">
+      </div>
+      <button type="submit" class="primario">Agregar tarea</button>
+    </form>
+
+    <section class="filtros" aria-label="Filtros">
+      <div class="pestanas" id="pestanas">
+        <button type="button" data-estado="todas" aria-pressed="true">Todas</button>
+        <button type="button" data-estado="pendientes" aria-pressed="false">Pendientes</button>
+        <button type="button" data-estado="completadas" aria-pressed="false">Completadas</button>
+      </div>
+      <select id="f-prioridad" aria-label="Filtrar por prioridad">
+        <option value="">Toda prioridad</option>
+        <option value="alta">Alta</option>
+        <option value="media">Media</option>
+        <option value="baja">Baja</option>
+      </select>
+      <input id="f-busqueda" type="search" placeholder="Buscar" aria-label="Buscar tareas">
+    </section>
+
+    <p id="mensaje" class="mensaje" role="status" hidden></p>
+    <ul id="lista" class="lista"></ul>
+    <p id="vacio" class="vacio" hidden>No hay tareas para mostrar.</p>
+  </main>
+
+  <dialog id="dialogo">
+    <form id="form-editar">
+      <h2>Editar tarea</h2>
+      <div class="campo grande">
+        <label for="e-titulo">Título</label>
+        <input id="e-titulo" maxlength="120" required autocomplete="off">
+      </div>
+      <div class="campo grande">
+        <label for="e-descripcion">Descripción</label>
+        <input id="e-descripcion" maxlength="1000" autocomplete="off">
+      </div>
+      <div class="campo">
+        <label for="e-prioridad">Prioridad</label>
+        <select id="e-prioridad">
+          <option value="baja">Baja</option>
+          <option value="media">Media</option>
+          <option value="alta">Alta</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="e-fecha">Fecha límite</label>
+        <input id="e-fecha" type="date">
+      </div>
+      <div class="botones">
+        <button type="button" id="cancelar">Cancelar</button>
+        <button type="submit" class="primario">Guardar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
